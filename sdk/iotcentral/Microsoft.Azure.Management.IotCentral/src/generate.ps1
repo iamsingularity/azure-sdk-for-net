@@ -1,0 +1,1 @@
+Start-AutoRestCodeGeneration -ResourceProvider "iotcentral/resource-manager" -AutoRestVersion "latest" -SdkGenerationDirectory "$PSScriptRoot\Generated"

@@ -1,0 +1,20 @@
+* text=auto
+
+*.bmp binary
+*.dll binary
+*.gif binary
+*.jpg binary
+*.png binary
+*.snk binary
+*.exe binary
+*.wmv binary
+*.mp4 binary
+*.ismv binary
+*.isma binary
+
+*.cs text diff=csharp
+*.csproj text merge=union
+*.sln text eol=crlf merge=union
+
+# Automatically collapse Track 2 test recordings in github PRs
+**/SessionRecords/**/*.json linguist-generated=true

@@ -1,90 +1,54 @@
-<h1>Windows Azure SDK for .NET</h1>
-<p>This SDK allows you to build Windows Azure applications that take advantage of
-Azure scalable cloud computing resources: table and blob storage, messaging through
-Service Bus, distributed caching through cache.</p>
-<p>For documentation please see the 
-<a href="http://www.windowsazure.com/en-us/develop/net/">Windows Azure .NET Developer Center</a>.</p>
+# Azure SDK for .NET
 
-<h1>Features</h1>
-<ul>
-    <li>Tables
-        <ul>
-            <li>Create/Delete Tables</li>
-            <li>Query/Create/Read/Update/Delete Entities</li>
-    </li>
-    <li>BLOBs
-        <ul>
-            <li>Create/Read/Update/Delete BLOBs</li>
-    </li>
-    <li>Queues
-        <ul>
-            <li>Create/Delete Queues</li>
-            <li>Insert/Peek Queue Messages</li>
-            <li>Advanced Queue Operations</li>
-    </li>
-</ul>
-        
-<h1>Getting Started</h1>
-<h2>Download</h2>
+[![Packages](https://img.shields.io/badge/packages-latest-blue.svg)](https://azure.github.io/azure-sdk/releases/latest/dotnet.html) [![Dependencies](https://img.shields.io/badge/dependencies-analyzed-blue.svg)](https://azuresdkartifacts.blob.core.windows.net/azure-sdk-for-net/dependencies/dependencies.html)
 
-<h3>Option 1: Via Git</h3>
-<p>To get the source code of the SDK via git just type:<br/>
-<pre>git clone git://github.com/WindowsAzure/azure-sdk-for-net.git<br/>
-cd ./azure-sdk-for-net</pre>
+This repository is for active development of the Azure SDK for .NET. For consumers of the SDK we recommend visiting our [public developer docs](https://docs.microsoft.com/en-us/dotnet/azure/) or our versioned [developer docs](https://azure.github.io/azure-sdk-for-net).
 
-<h3>Option 2: Via NuGet</h3>
-<p>To get the binaries of this library as distributed by Microsoft, ready for use
-within your project you can also have them installed by the .NET package manager NuGet.<br/>
-<pre>Install-Package WindowsAzure.Storage</pre></p>
+## Getting started
 
-<h2>Requirements</h2>
-<ul>
-    <li>Account: To use this SDK to call Windows Azure services, you need to first
-    create an account.</li>
-    <li>Hosting: To host your Java code in Windows Azure, you additionally need
-    to download the full Windows Azure SDK for .NET - which includes packaging,
-    emulation, and deployment tools.</li>
-    <li>.NET Framework 3.5 or higher</li>
-</ul>
+To get started with a library, see the README.md file located in the library's project folder. You can find these library folders grouped by service in the /sdk directory.
 
-<h2>Code Samples</h2>
-<p>Note:</p>
-<ul>
-    <li>All code samples are available under the <code>/samples</code> folder.</li>
-    <li>How-Tos focused around accomplishing specific tasks are available on the
-    <a href="http://www.windowsazure.com/en-us/develop/net/">Windows Azure .NET
-    Developer Center</a>.</li>
-</ul>
+For tutorials, samples, quick starts, and other documentation, go to [Azure for .NET Developers](https://docs.microsoft.com/en-us/dotnet/azure/).
 
-<p>First, include the classes you need (in this case we'll include the StorageClient
-and further demonstrate creating a table):<br/>
-<pre>using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.StorageClient;</pre></p>
+## Packages available
 
-<p>To perform an operation on any Windows Azure resource you will first instantiate
-a <strong>client</strong> which allows performing actions on it. The resource is known as an
-<strong>entity</strong>. To do so for Table you also have to authenticate your request:<br/>
-<pre>var storageAccount = 
-    CloudStorageAccount.FromConfigurationSetting("StorageConnectionString");
-var tableClient = storageAccount.CreateCloudTableClient();</pre></p>
+### Client
 
-<p>Now, to create a table entity using the client:<br/>
-<pre>tableClient.CreateTable("People");</pre></p>
+New wave of packages that we are announcing as **GA** and several that are currently releasing in **preview**. These libraries follow the [Azure SDK Design Guidelines for .NET](https://azure.github.io/azure-sdk/dotnet/guidelines/) and share a number of core features such as HTTP retries, logging, transport protocols, authentication protocols, etc., so that once you learn how to use these features in one client library, you will know how to use them in other client libraries. You can learn about these shared features at [Azure.Core](sdk/core/Azure.Core/README.md).
 
-<h1>Need Help?</h1>
-<p>Be sure to check out the Windows Azure <a href="http://go.microsoft.com/fwlink/?LinkId=234489">
-Developer Forums on MSDN</a> if you have trouble with the provided code.</p>
+These new client libraries can be identified by the naming used for their folder, package, and namespace. Each will start with `Azure`, followed by the service category, and then the name of the service. For example [`Azure.Storage.Blobs`](./sdk/core/Azure.Storage.Blobs).
 
-<h1>Feedback</h1>
-<p>For feedback related specificically to this SDK, please use the Issues
-section of the repository.</p>
-<p>For general suggestions about Windows Azure please use our
-<a href="http://www.mygreatwindowsazureidea.com/forums/34192-windows-azure-feature-voting">UserVoice forum</a>.</p>
+For a complete list of available packages, please see the [latest available packages](https://azure.github.io/azure-sdk/releases/latest/dotnet.html) page.
 
-<h1>Learn More</h1>
-<ul>
-    <li><a href="http://www.windowsazure.com/en-us/develop/net/">Windows Azure .NET
-    Developer Center</a></li>
-    <li><a href="http://msdn.microsoft.com/en-us/library/dd179380.aspx">
-    Windows Azure SDK Reference for .NET (MSDN)</a></li>
-</ul>
+> NOTE: If you need to ensure your code is ready for production we strongly recommend using one of the stable, non-preview libraries.
+
+### Client: Previous Versions
+
+Last stable versions of packages that are production-ready. These libraries provide similar functionalities to the preview packages, as they allow you to use and consume existing resources and interact with them, for example: upload a storage blob. Stable library directories typically contain 'Microsoft.Azure' in their names, e.g. 'Microsoft.Azure.KeyVault'. They might not implement the [guidelines](https://azure.github.io/azure-sdk/dotnet_introduction.html) or have the same feature set as the Novemeber releases. They do however offer wider coverage of services.
+
+### Management
+
+Libraries which enable you to provision specific server resources. They are directly mirroring Azure service's REST endpoints. Management library directories typically contain the word 'Management' in their names, e.g. 'Microsoft.Azure.Management.Storage'.
+
+## Need help?
+
+* For reference documentation visit the [Azure SDK for .NET API Reference](http://aka.ms/net-docs).
+* For tutorials, samples, quick starts, and other documentation, go to [Azure for .NET Developers](https://docs.microsoft.com/en-us/dotnet/azure/).
+* File an issue via [Github Issues](https://github.com/Azure/azure-sdk-for-net/issues/new/choose).
+* Check [previous questions](https://stackoverflow.com/questions/tagged/azure+.net) or ask new ones on StackOverflow using `azure` and `.net` tags.
+
+### Reporting security issues and security bugs
+
+Security issues and bugs should be reported privately, via email, to the Microsoft Security Response Center (MSRC) <secure@microsoft.com>. You should receive a response within 24 hours. If for some reason you do not, please follow up via email to ensure we received your original message. Further information, including the MSRC PGP key, can be found in the [Security TechCenter](https://www.microsoft.com/msrc/faqs-report-an-issue).
+
+## Contributing
+For details on contributing to this repository, see the [contributing guide](CONTRIBUTING.md).
+
+This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit
+https://cla.microsoft.com.
+
+When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repositories using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-net%2FREADME.png)
